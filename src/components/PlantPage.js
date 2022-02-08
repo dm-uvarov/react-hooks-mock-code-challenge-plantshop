@@ -21,14 +21,22 @@ function PlantPage() {
     setPlants([...plants, newPlant])
   } 
   
+  const [searchValue,setSearchValue] = useState("");
 
+  const searchPlant = e => {setSearchValue(e.target.value )}
+
+  const searchedPlants = plants.filter(plantObj => {
+    const lowerName = plantObj.name.toLowerCase()
+    const lowerSearch = searchValue.toLowerCase()
+    return lowerName.includes( lowerSearch )
+  }) 
 
   console.log(plants)
   return (
     <main>
       <NewPlantForm addNewPlantCardToState= { addNewPlantCardToState} />
-      <Search />
-      <PlantList  plants={plants} />
+      <Search searchPlant={searchPlant}/>
+      <PlantList  plants={searchedPlants} />
     </main>
   );
 }
