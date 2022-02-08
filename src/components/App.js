@@ -4,23 +4,19 @@ import PlantPage from "./PlantPage";
 
 const link = "http://localhost:6001/plants"
 
-const [plants, setPlants] = useState([]);
+
+
 
 
 function App() {
-
+  const [plants, setPlants] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:6001/plants")
+    fetch(link)
       .then(r => r.json())
-      .then(plants => setPlants(plants))
+      .then(setPlants)
       
-  }, [])
-
   
-
-
-  // 1 props
-  // const plants = data.map((plant => ())
+  }, [])
 
   return (
     <div className="app">
